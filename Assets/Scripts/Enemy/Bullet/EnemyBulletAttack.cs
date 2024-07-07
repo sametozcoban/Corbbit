@@ -18,13 +18,7 @@ public class EnemyBulletAttack : MonoBehaviour
     {
         InvokeRepeating("EnemyAttack", 0f, timeForFire);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void EnemyAttack()
     {
         Transform randomFirePoint = ateşNoktaları[Random.Range(0, ateşNoktaları.Length)];

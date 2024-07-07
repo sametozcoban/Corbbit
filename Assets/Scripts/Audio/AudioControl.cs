@@ -11,12 +11,19 @@ public class AudioControl : MonoBehaviour
     {
         music.Play();
     }
-
-    private void Update()
+    
+    private void OnEnable()
     {
-       // if (GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().kalp == 0)
-       // {
-       //     music.Stop();
-       // }
+        Health.isLive += StopAudio;
+    }
+
+    private void OnDisable()
+    {
+        Health.isLive -= StopAudio;
+    }
+
+    private void StopAudio()
+    {
+        music.Stop();
     }
 }

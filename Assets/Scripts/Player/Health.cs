@@ -7,12 +7,13 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int kalp;
-    public int kalpSayisi;
-
+    public int kalp = 3;
+    public int kalpSayisi = 3;
     public Image[] kalpler;
     public Sprite fullKalp;
     public Sprite bosKalp;
+
+    public static event Action isLive;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class Health : MonoBehaviour
             kalp = kalpSayisi;
         }
 
-        for ( int i = 0; i < kalpler.Length; i++)
+        for (int i = 0; i < kalpler.Length; i++)
         {
             if (i < kalp)
             {
@@ -37,19 +38,19 @@ public class Health : MonoBehaviour
             {
                 kalpler[i].sprite = bosKalp;
             }
-            if (i < kalpSayisi)
-            {
-                kalpler[i].enabled = true;
-            }
-            else
-            {
-                kalpler[i].enabled = false;
-            }
+
+            kalpler[i].enabled = (i < kalpSayisi);
         }
 
+        IsDead();
+    }
+
+    public void IsDead()
+    {
         if (kalp == 0)
         {
+            isLive?.Invoke();
             Destroy(gameObject);
         }
     }
-}  // blablabla
+}  

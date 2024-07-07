@@ -2,24 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 public class UIControl : MonoBehaviour
 {
     public GameObject sceneUI;
+    private Health playerHealth;
+
+    private void OnEnable()
+    {
+        Health.isLive += OnPlayerDead;
+    }
+
+    private void OnDisable()
+    { 
+        Health.isLive -= OnPlayerDead;
+    }
 
     private void Start()
     {
+        playerHealth = GetComponent<Health>();
         sceneUI.SetActive(false);
     }
 
-    void Update()
+    private void OnPlayerDead()
     {
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().kalp == 0)
+        if (sceneUI.activeSelf)
         {
-            Debug.Log("öldün");
-            sceneUI.SetActive(true);
+            sceneUI.SetActive(false);
         }
+        else sceneUI.SetActive(true);
     }
 
     public void RestartGame()

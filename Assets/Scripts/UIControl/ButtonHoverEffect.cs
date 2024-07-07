@@ -13,20 +13,20 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     private void Start()
     {
-        // Script baþladýðýnda butonun normal rengini al.
+        // Script baÅŸladÄ±ÄŸÄ±nda butonun normal rengini al.
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
         normalColor = buttonText.color;
     }
 
-    // Mouse buton üzerine geldiðinde çalýþacak fonksiyon.
+    // Mouse buton Ã¼zerine geldiÄŸinde Ã§alÄ±ÅŸacak fonksiyon.
     public void OnPointerEnter(PointerEventData eventData)
     {
-        buttonText.color = hoverColor; // Rengi deðiþtir.
+        buttonText.color = hoverColor; // Rengi deÄŸiÅŸtir.
     }
 
-    // Mouse butondan çýkýldýðýnda çalýþacak fonksiyon.
+    // Mouse butondan Ã§Ä±kÄ±ldÄ±ÄŸÄ±nda Ã§alÄ±ÅŸacak fonksiyon.
     public void OnPointerExit(PointerEventData eventData)
     {
-        buttonText.color = normalColor; // Orijinal rengine döndür.
+        buttonText.color = normalColor; // Orijinal rengine dÃ¶ndÃ¼r.
     }
 }
